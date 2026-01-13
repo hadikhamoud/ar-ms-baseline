@@ -19,7 +19,7 @@ training:
   output_dir: "outputs/qwen3vl-arabic-ocr-lora"
   num_train_epochs: 2
   per_device_train_batch_size: 24
-  gradient_accumulation_steps: 2
+  gradient_accumulation_steps: 1
   learning_rate: 2.0e-5
   warmup_ratio: 0.03
   warmup_steps: 0
@@ -31,12 +31,12 @@ training:
   eval_steps: null
   evaluation_strategy: "no"
   save_total_limit: 3
-  max_seq_length: 512
+  max_seq_length: 256
   seed: 42
 
 lora:
-  r: 64
-  lora_alpha: 128
+  r: 32
+  lora_alpha: 64
   lora_dropout: 0.05
   bias: "none"
   target_modules:
