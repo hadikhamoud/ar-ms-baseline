@@ -8,7 +8,7 @@ dataset:
   csv_path: "data/AR-MS.train/annotations.csv"
   image_column: "filename"
   text_column: "text"
-  train_split: 0.95
+  train_split: 1.0
   max_samples: null
 
 image:
@@ -18,7 +18,7 @@ image:
 training:
   output_dir: "outputs/qwen3vl-arabic-ocr-lora"
   num_train_epochs: 3
-  per_device_train_batch_size: 16
+  per_device_train_batch_size: 32
   gradient_accumulation_steps: 2
   learning_rate: 2.0e-5
   warmup_ratio: 0.03
@@ -26,9 +26,10 @@ training:
   weight_decay: 0.01
   max_grad_norm: 1.0
   lr_scheduler_type: "cosine"
-  logging_steps: 10
-  save_steps: 250
-  eval_steps: 250
+  logging_steps: 50
+  save_steps: 500
+  eval_steps: null
+  evaluation_strategy: "no"
   save_total_limit: 3
   max_seq_length: 512
   seed: 42
