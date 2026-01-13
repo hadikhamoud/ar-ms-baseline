@@ -4,8 +4,8 @@ model:
   attn_implementation: "flash_attention_2"
 
 dataset:
-  images_dir: "data/images"
-  csv_path: "data/train.csv"
+  images_dir: "data/AR-MS.train/images"
+  csv_path: "data/AR-MS.train/annotations.csv"
   image_column: "filename"
   text_column: "text"
   train_split: 0.95
@@ -18,8 +18,8 @@ image:
 training:
   output_dir: "outputs/qwen3vl-arabic-ocr-lora"
   num_train_epochs: 3
-  per_device_train_batch_size: 4
-  gradient_accumulation_steps: 4
+  per_device_train_batch_size: 16
+  gradient_accumulation_steps: 2
   learning_rate: 2.0e-5
   warmup_ratio: 0.03
   warmup_steps: 0
@@ -34,8 +34,8 @@ training:
   seed: 42
 
 lora:
-  r: 32
-  lora_alpha: 64
+  r: 64
+  lora_alpha: 128
   lora_dropout: 0.05
   bias: "none"
   target_modules:

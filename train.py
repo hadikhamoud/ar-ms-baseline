@@ -118,7 +118,7 @@ def load_model_and_processor(config: Config):
 
     model = Qwen3VLForConditionalGeneration.from_pretrained(
         config.model.name,
-        torch_dtype=get_torch_dtype(config.model.dtype),
+        dtype=get_torch_dtype(config.model.dtype),
         device_map="auto",
         attn_implementation=config.model.attn_implementation,
     )

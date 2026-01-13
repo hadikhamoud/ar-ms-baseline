@@ -41,7 +41,7 @@ def load_model(model_path: str, dtype: str):
 
     model = Qwen3VLForConditionalGeneration.from_pretrained(
         model_path,
-        torch_dtype=torch_dtype,
+        dtype=torch_dtype,
         device_map="auto",
         attn_implementation="flash_attention_2",
     )
