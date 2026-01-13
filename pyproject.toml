@@ -1,7 +1,7 @@
 [project]
-name = "arabic-ocr-finetune"
+name = "ar-ms-baseline"
 version = "0.1.0"
-description = "Fine-tune Qwen3-VL for Arabic manuscript OCR"
+description = "baseline for NAKBA NLP AR MS Shared Task 2026"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
