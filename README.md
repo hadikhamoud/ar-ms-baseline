@@ -5,7 +5,7 @@ Fine-tune Qwen3-VL-8B for Arabic manuscript OCR using LoRA.
 ## Setup
 
 ```bash
-uv sync
+UV_TORCH_BACKEND=auto uv sync
 ```
 
 ## Data Format
