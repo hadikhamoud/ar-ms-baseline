@@ -17,4 +17,8 @@ dependencies = [
     "tqdm>=4.65.0",
     "sentencepiece>=0.1.99",
     "safetensors>=0.4.0",
+    "flash-attn>=2.7.0",
 ]
+
+[tool.uv]
+no-build-isolation-package = ["flash-attn"]
