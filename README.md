@@ -15,10 +15,7 @@ Prepare your data as:
 ```
 data/
 ├── images/
-│   ├── 001.png
-│   ├── 002.png
-│   └── ...
-└── train.csv
+ ── train.csv
 ```
 
 CSV format:
