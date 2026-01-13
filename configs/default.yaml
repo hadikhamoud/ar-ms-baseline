@@ -17,8 +17,8 @@ image:
 
 training:
   output_dir: "outputs/qwen3vl-arabic-ocr-lora"
-  num_train_epochs: 3
-  per_device_train_batch_size: 32
+  num_train_epochs: 2
+  per_device_train_batch_size: 24
   gradient_accumulation_steps: 2
   learning_rate: 2.0e-5
   warmup_ratio: 0.03
