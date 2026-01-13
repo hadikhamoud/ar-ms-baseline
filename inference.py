@@ -3,11 +3,11 @@
 import argparse
 from pathlib import Path
 
-import torch  
-from PIL import Image  
-from transformers import Qwen3VLForConditionalGeneration, AutoProcessor  
+import torch
+from PIL import Image
+from transformers import Qwen3VLForConditionalGeneration, AutoProcessor
 
-from src.collator import resize_image
+from collator import resize_image
 
 
 def parse_args() -> argparse.Namespace:

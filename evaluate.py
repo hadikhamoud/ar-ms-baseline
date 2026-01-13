@@ -19,7 +19,7 @@ from PIL import Image  # type: ignore
 from tqdm import tqdm  # type: ignore
 from transformers import Qwen3VLForConditionalGeneration, AutoProcessor  # type: ignore
 
-from src.collator import resize_image
+from collator import resize_image
 
 
 def parse_args() -> argparse.Namespace:

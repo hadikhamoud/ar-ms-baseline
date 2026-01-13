@@ -16,9 +16,9 @@ from transformers import Qwen3VLForConditionalGeneration, AutoProcessor, set_see
 from peft import LoraConfig, TaskType  # type: ignore
 from trl import SFTTrainer, SFTConfig  # type: ignore
 
-from src.dataset import load_ocr_dataset, prepare_ocr_messages, split_dataset
-from src.collator import VisionLanguageCollator
-from src.utils import load_config, get_torch_dtype, Config
+from dataset import load_ocr_dataset, prepare_ocr_messages, split_dataset
+from collator import VisionLanguageCollator
+from utils import load_config, get_torch_dtype, Config
 
 
 def parse_args() -> argparse.Namespace:
