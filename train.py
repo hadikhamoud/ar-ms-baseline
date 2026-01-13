@@ -212,7 +212,7 @@ def create_trainer(config: Config, model, processor, train_ds, val_ds) -> SFTTra
         model=model,
         args=training_args,
         train_dataset=train_ds,
-        eval_dataset=val_ds if len(val_ds) > 0 else None,
+        eval_dataset=val_ds if val_ds is not None and len(val_ds) > 0 else None,
         data_collator=collator,
         peft_config=lora_config,
     )

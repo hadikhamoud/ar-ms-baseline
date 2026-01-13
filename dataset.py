@@ -112,6 +112,11 @@ def split_dataset(
     seed: int = 42,
 ) -> Tuple[Dataset, Dataset]:
     dataset = dataset.shuffle(seed=seed)
+
+    if train_split >= 1.0:
+        print(f"Train: {len(dataset)}, Val: 0 (no validation)")
+        return dataset, None
+
     split_idx = int(len(dataset) * train_split)
 
     train_ds = dataset.select(range(split_idx))
