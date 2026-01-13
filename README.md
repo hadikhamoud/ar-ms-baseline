@@ -6,7 +6,6 @@ Fine-tune Qwen3-VL-8B for Arabic manuscript OCR using LoRA.
 
 ```bash
 uv sync
-uv pip install flash-attn --no-build-isolation
 ```
 
 ## Data Format
