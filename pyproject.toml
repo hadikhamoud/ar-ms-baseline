@@ -1,0 +1,27 @@
+[project]
+name = "arabic-ocr-finetune"
+version = "0.1.0"
+description = "Fine-tune Qwen3-VL for Arabic manuscript OCR"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.0.0",
+    "transformers>=4.45.0",
+    "accelerate>=0.25.0",
+    "datasets>=2.14.0",
+    "peft>=0.7.0",
+    "trl>=0.7.0",
+    "pillow>=10.0.0",
+    "pandas>=2.0.0",
+    "pyyaml>=6.0.0",
+    "tqdm>=4.65.0",
+    "sentencepiece>=0.1.99",
+    "safetensors>=0.4.0",
+]
+
+[project.optional-dependencies]
+flash-attn = ["flash-attn>=2.0.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

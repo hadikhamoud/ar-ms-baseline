@@ -1,0 +1,56 @@
+model:
+  name: "Qwen/Qwen3-VL-8B-Instruct"
+  dtype: "bfloat16"
+  attn_implementation: "flash_attention_2"
+
+dataset:
+  images_dir: "data/images"
+  csv_path: "data/train.csv"
+  image_column: "filename"
+  text_column: "text"
+  train_split: 0.95
+  max_samples: null
+
+image:
+  max_side: 1536
+  max_pixels: 1572864
+
+training:
+  output_dir: "outputs/qwen3vl-arabic-ocr-lora"
+  num_train_epochs: 3
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 4
+  learning_rate: 2.0e-5
+  warmup_ratio: 0.03
+  warmup_steps: 0
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  lr_scheduler_type: "cosine"
+  logging_steps: 10
+  save_steps: 250
+  eval_steps: 250
+  save_total_limit: 3
+  max_seq_length: 512
+  seed: 42
+
+lora:
+  r: 32
+  lora_alpha: 64
+  lora_dropout: 0.05
+  bias: "none"
+  target_modules:
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+
+prompt:
+  system: ""
+  user: "Read and transcribe the Arabic manuscript text in this image exactly as written, preserving all diacritics and letter forms. Output only the transcribed text."
+
+hardware:
+  use_tf32: true
+  gradient_checkpointing: false
