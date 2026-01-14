@@ -1,10 +1,9 @@
-"""Dataset loader for OCR fine-tuning."""
 
 from pathlib import Path
 from typing import Dict, Any, Optional, Tuple
 
-import pandas as pd  # type: ignore
-from datasets import Dataset, Image as HFImage  # type: ignore
+import pandas as pd  
+from datasets import Dataset, Image as HFImage  
 
 
 def load_ocr_dataset(

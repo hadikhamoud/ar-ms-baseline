@@ -1,4 +1,3 @@
-"""Utility functions for config loading and setup."""
 
 from typing import Optional
 from dataclasses import dataclass, field

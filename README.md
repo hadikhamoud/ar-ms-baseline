@@ -2,6 +2,9 @@
 
 Fine-tune Qwen3-VL-8B for Arabic manuscript OCR using LoRA.
 
+This repository serves as the baseline for the NAKBA NLP 2026: Arabic Manuscript Understanding Shared Task.
+Base model: Qwen/Qwen3-VL-8B-Instruct.
+
 ## Setup
 
 ```bash
@@ -47,6 +50,10 @@ uv run python inference.py --model_path outputs/qwen3vl-arabic-ocr-lora --image 
 ```
 
 ## Evaluation
+
+Released test set metrics:
+- CER: 0.2297
+- WER: 0.4998
 
 With ground truth:
 ```bash

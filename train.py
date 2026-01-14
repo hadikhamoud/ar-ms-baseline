@@ -1,20 +1,11 @@
-#!/usr/bin/env python3
-"""
-Fine-tune Qwen3-VL on OCR tasks.
-
-Usage:
-    python train.py --config configs/default.yaml
-    python train.py --images_dir data/images --csv_path data/train.csv
-"""
-
 import argparse
 import sys
 from functools import partial
 
-import torch  # type: ignore
-from transformers import Qwen3VLForConditionalGeneration, AutoProcessor, set_seed  # type: ignore
-from peft import LoraConfig, TaskType  # type: ignore
-from trl import SFTTrainer, SFTConfig  # type: ignore
+import torch  
+from transformers import Qwen3VLForConditionalGeneration, AutoProcessor, set_seed  
+from peft import LoraConfig, TaskType  
+from trl import SFTTrainer, SFTConfig  
 
 from dataset import load_ocr_dataset, prepare_ocr_messages, split_dataset
 from collator import VisionLanguageCollator

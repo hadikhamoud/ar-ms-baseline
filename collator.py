@@ -1,10 +1,7 @@
-"""Data collator for vision-language OCR training."""
-
 from typing import List, Dict, Any
 
-import torch  # type: ignore
-from PIL import Image  # type: ignore
-
+import torch  
+from PIL import Image 
 
 def resize_image(
     pil_image: Image.Image,

@@ -1,23 +1,14 @@
-#!/usr/bin/env python3
-"""
-Evaluate a fine-tuned Qwen3-VL OCR model using CER and WER metrics.
-
-Usage:
-    python evaluate.py --model_path outputs/qwen3vl-arabic-ocr-lora --images_dir data/test/images --csv_path data/test/annotations.csv
-    python evaluate.py --model_path outputs/qwen3vl-arabic-ocr-lora --images_dir data/test/images --csv_path data/test/filenames.csv --output_dir submissions/ --generate_only
-"""
-
 import argparse
 import os
 from pathlib import Path
 from typing import List, Tuple, Optional
 import json
 
-import pandas as pd  # type: ignore
-import torch  # type: ignore
-from PIL import Image  # type: ignore
-from tqdm import tqdm  # type: ignore
-from transformers import Qwen3VLForConditionalGeneration, AutoProcessor  # type: ignore
+import pandas as pd
+import torch
+from PIL import Image
+from tqdm import tqdm
+from transformers import Qwen3VLForConditionalGeneration, AutoProcessor
 
 from collator import resize_image
 
@@ -42,6 +33,12 @@ def parse_args() -> argparse.Namespace:
         default="bfloat16",
     )
     parser.add_argument("--generate_only", action="store_true")
+    parser.add_argument(
+        "--image_column",
+        type=str,
+        default=None,
+        help="CSV column name for image filenames (default: filename or image)",
+    )
     return parser.parse_args()
 
 
@@ -156,19 +153,28 @@ def load_test_data(
     csv_path: str,
     max_samples: Optional[int] = None,
     has_ground_truth: bool = True,
+    image_column: Optional[str] = None,
 ) -> Tuple[List[Tuple[Path, str, Optional[str]]], pd.DataFrame]:
     images_path = Path(images_dir)
     df = pd.read_csv(csv_path)
 
-    if "filename" not in df.columns:
-        raise ValueError("CSV must have 'filename' column")
+    if image_column:
+        if image_column not in df.columns:
+            raise ValueError(f"CSV must have '{image_column}' column")
+        image_col = image_column
+    elif "filename" in df.columns:
+        image_col = "filename"
+    elif "image" in df.columns:
+        image_col = "image"
+    else:
+        raise ValueError("CSV must have 'filename' or 'image' column")
 
     if max_samples is not None:
         df = df.head(max_samples)
 
     samples = []
     for _, row in df.iterrows():
-        filename = str(row["filename"])
+        filename = str(row[image_col])
         image_path = images_path / filename
 
         if not image_path.exists():
@@ -229,6 +235,7 @@ def main():
         csv_path=args.csv_path,
         max_samples=args.max_samples,
         has_ground_truth=has_ground_truth,
+        image_column=args.image_column,
     )
     print(f"Loaded {len(samples)} samples")
 
