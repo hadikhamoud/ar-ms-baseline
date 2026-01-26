@@ -5,6 +5,8 @@ Fine-tune Qwen3-VL-8B for Arabic manuscript OCR using LoRA.
 This repository serves as the baseline for the NAKBA NLP 2026: Arabic Manuscript Understanding Shared Task.
 Base model: Qwen/Qwen3-VL-8B-Instruct.
 
+[site here](https://acrps.ai/nakba-nlp-manu-understanding-2026)
+
 ## Setup
 
 ```bash
@@ -22,7 +24,7 @@ data/
 
 CSV format:
 ```csv
-filename,text
+image,text
 001.png,النص العربي هنا
 002.png,نص آخر
 ```
